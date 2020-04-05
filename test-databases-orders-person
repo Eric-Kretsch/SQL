@@ -1,0 +1,52 @@
+mysql> show databases;
+
+mysql> create database test_database;
+
+mysql> CREATE TABLE orders (OrderID int, ItemName varchar(255), LastName varchar(2
+55), FirstName varchar(255), Price float, Date datetime default now());
+
+mysql> INSERT INTO orders(OrderID, ItemName, LastName, FirstName, price)  VALUES (
+1, 'pretzel', 'Hudson', 'Stanley', 3.50);
+
+mysql> select * from orders;
++---------+----------+----------+-----------+-------+---------------------+
+| OrderID | ItemName | LastName | FirstName | Price | Date                |
++---------+----------+----------+-----------+-------+---------------------+
+|       1 | pretzel  | Hudson   | Stanley   |   3.5 | 2020-04-05 17:44:56 |
++---------+----------+----------+-----------+-------+---------------------+
+
+mysql> ALTER table orders ADD Email varchar(255);
+mysql> ALTER table orders DROP column email;
+
+mysql> CREATE TABLE person (PersonID int auto_increment primary key, LastName varc
+har(255), FirstName varchar(255), Age int);
+
+mysql> CREATE table orders (OrderID int auto_increment primary key, item varchar(2
+55), Person_ID int, foreign key(Person_ID) references person(PersonID));
+
+mysql> INSERT INTO person(FirstName, LastName, Age) VALUES ('Stanley', 'Hudson',
+    ->  45), ('Michael', 'Scott', 41), ('Dwight', 'Schrute', 39);
+    
+mysql> INSERT INTO orders(item, Person_ID) VALUES ('Pretzel',1), ('Magic kit', 2),
+ ('Beet', 3);
+ 
+ mysql> SELECT * FROM person;
++----------+----------+-----------+------+
+| PersonID | LastName | FirstName | Age  |
++----------+----------+-----------+------+
+|        1 | Hudson   | Stanley   |   45 |
+|        2 | Scott    | Michael   |   41 |
+|        3 | Schrute  | Dwight    |   39 |
++----------+----------+-----------+------+
+
+mysql> select * from orders;
++---------+-----------+-----------+
+| OrderID | item      | Person_ID |
++---------+-----------+-----------+
+|       1 | Pretzel   |         1 |
+|       2 | Magic kit |         2 |
+|       3 | Beet      |         3 |
++---------+-----------+-----------+
+
+mysql> ALTER TABLE orders ALTER item set default 'chicken';
+ 
