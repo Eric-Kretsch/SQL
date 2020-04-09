@@ -1,0 +1,8 @@
+Select names, and countries of origin of all the travelers, excluding anyone from Canada, Mexico, or The US.
+
+travelers table schema
+
+name
+country
+
+SELECT name, country FROM travelers WHERE country NOT IN ('Canada', 'Mexico', 'USA')
