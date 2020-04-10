@@ -1,0 +1,11 @@
+Insert name into participants table
+
+participants table schema
+
+name (string)
+age (integer)
+attending (boolean)
+
+INSERT INTO participants VALUES ('Eric', 26, true);
+
+SELECT * FROM participants;
