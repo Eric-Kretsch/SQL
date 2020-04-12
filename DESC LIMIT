@@ -1,0 +1,9 @@
+Find the top 5 bestselling books
+
+books table schema
+
+name
+author
+copies_sold
+
+SELECT * FROM books ORDER BY copies_sold DESC LIMIT 5;
