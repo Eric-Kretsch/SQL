@@ -1,0 +1,99 @@
+##Create database cafe##
+
+CREATE Table cafe (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255) NOT NULL,
+item VARCHAR(255),
+price FLOAT);
+
+##Change column names##
+
+alter table cafe change name name varchar(255) NOT NULL;
+
+##Insert data into columns##
+
+INSERT INTO cafe (column_name, column_name, ...) VALUES (`string_value`, integer/float, ...),
+(`string_value`, int/float, ...);
+
+
+SQL WHERE
+
+SELECT * FROM cafe WHERE price > 4.5;
+
++----+---------+---------------+-------+
+| id | name    | item          | price |
++----+---------+---------------+-------+
+|  2 | Paul    | Flat White    |   5.6 |
+|  4 | Willaim | Lemon bitters |   5.2 |
++----+---------+---------------+-------+
+
+
+SQL NOT
+
+SELECT * FROM cafe WHERE NOT price> 4.5;
+
+
+SQL COMBINING WITH AND & OR
+
+SELECT * FROM cafe WHERE price > 4.5 AND NOT item = 'Flat White';
+
++----+---------+---------------+-------+
+| id | name    | item          | price |
++----+---------+---------------+-------+
+|  4 | Willaim | Lemon bitters |   5.2 |
++----+---------+---------------+-------+
+
+
+SQL ORDER BY
+
+SELECT item, price from case ORDER BY price DESC;
+
++---------------+-------+
+| item          | price |
++---------------+-------+
+| Flat White    |   5.6 |
+| Lemon bitters |   5.2 |
+| Cold brew     |   4.5 |
+| Latte         |   4.5 |
+| Cold brew     |   4.5 |
+| Latte         |   4.5 |
+| Cappuccino    |   4.5 |
+| Latte         |   4.5 |
+| Vanilla Coke  |   4.3 |
++---------------+-------+
+
+
+SQL IN
+
+SELECT * from cafe WHERE item in ('Latte', 'Vanilla Coke') ORDER BY price DESC;
+
+SQL GROUP BY
+
+SELECT COUNT(*), item FROM cafe GROUP BY item ORDER BY item;
+
+
+SQL LIKE
+
+SELECT * FROM cafe WHERE item LIKE 'L%';
+
++----+---------+---------------+-------+
+| id | name    | item          | price |
++----+---------+---------------+-------+
+|  4 | Willaim | Lemon bitters |   5.2 |
+|  5 | Alex    | Latte         |   4.5 |
+|  7 | Samuel  | Latte         |   4.5 |
+|  9 | Kim     | Latte         |   4.5 |
++----+---------+---------------+-------+
+
+SQL HAVING
+
+SELECT COUNT(*), item FROM cafe GROUP BY item HAVING MAX(price) < 5.5l
+
++----------+---------------+
+| COUNT(*) | item          |
++----------+---------------+
+|        1 | Cappuccino    |
+|        2 | Cold brew     |
+|        3 | Latte         |
+|        1 | Lemon bitters |
+|        1 | Vanilla Coke  |
++----------+---------------+
